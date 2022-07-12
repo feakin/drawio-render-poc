@@ -13,6 +13,7 @@
         var mxOutline = function () {}
         var mxDragSource = function () {}
     </script>
+<!--    <script src="js/viewer.min.js"></script>-->
     <script src="js/embed.js"></script>
     <script src="js/decode.js"></script>
     <script>
@@ -21,7 +22,6 @@
             .then(text => {
                 const node = mxUtils.parseXml(decode(text));
                 const graph = new Graph(document.getElementById('output'), null, null, null, null); // create Graph instance, container is an HTML element where the SVG will be exported
-                console.log(graph);
                 graph.importGraphModel(node.documentElement);
             });
     </script>
