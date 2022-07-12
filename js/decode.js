@@ -31,8 +31,6 @@ function getTextContent(node) {
 function decode(data) {
     try {
         var node = parseXml(data).documentElement;
-        console.log(node.nodeName);
-
         if (node != null && node.nodeName == 'mxfile') {
             var diagrams = node.getElementsByTagName('diagram');
 
@@ -41,7 +39,7 @@ function decode(data) {
                 data = atob(data);
                 data = pako.inflateRaw(Uint8Array.from(data, c => c.charCodeAt(0)), { to: 'string' });
                 data = decodeURIComponent(data);
-                console.log(data);
+                return data;
             }
         }
     } catch (e) {

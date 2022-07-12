@@ -9,16 +9,28 @@
     <script src="js/decode.js"></script>
     <script src="js/app.min.js"></script>
     <script>
+        mxCodec.allowlist = ['mxStylesheet', 'Array', 'mxGraphModel',
+            'mxCell', 'mxGeometry', 'mxRectangle', 'mxPoint',
+            'mxChildChange', 'mxRootChange', 'mxTerminalChange',
+            'mxValueChange', 'mxStyleChange', 'mxGeometryChange',
+            'mxCollapseChange', 'mxVisibleChange', 'mxCellAttributeChange']
+
         fetch("samples/sample.drawio")
             .then(response => response.text())
             .then(text => {
-                var data = decode(text);
-                let file = new LocalFile(null, data, "sample.drawio", true);
-                console.log(file)
+                var node = mxUtils.parseXml(decode(text));
+
+                var graph = new Graph(document.getElementById('output'), null, null, null, null); // create Graph instance, container is an HTML element where the SVG will be exported
+                graph.importGraphModel(node.documentElement);
+
+                // var codec = new mxCodec(node.documentElement.ownerDocument);
+                // var tempModel = new mxGraphModel();
+                // codec.decode(node, tempModel);
+                // console.log(tempModel);
             });
     </script>
 </head>
-
+<div id="output"></div>
 <body>
 </body>
 </html>

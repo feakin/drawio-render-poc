@@ -11,3 +11,9 @@
 Others:
 
 VSCode Plugins: [https://github.com/hediet/vscode-drawio](https://github.com/hediet/vscode-drawio)
+
+Redmine: https://github.com/mikitex70/redmine_drawio
+
+Graphviz to Draw.io: https://github.com/hbmartin/graphviz2drawio
+
+
