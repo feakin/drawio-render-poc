@@ -17,8 +17,14 @@
     <script>
         var mxEdgeHandler = function () {
         }
+        mxEdgeHandler.prototype.destroy = function (...args) {
+        };
         var mxVertexHandler = function () {
         }
+        mxVertexHandler.prototype.destroy = function (...args) {
+        };
+        mxVertexHandler.prototype.mouseMove = function (...args) {
+        };
         var mxRubberband = function () {
         }
         var mxGuide = function () {
@@ -29,10 +35,18 @@
         }
         var mxEdgeSegmentHandler = function () {
         }
+        var mxSelectionCellsHandler = function () {
+        };
+        mxSelectionCellsHandler.prototype.refresh = function (...args) {
+        };
     </script>
     <script src="js/embed.js"></script>
     <script src="js/decode.js"></script>
     <script>
+        mxSelectionCellsHandler.prototype.refresh = function (...args) {};
+        mxGraphHandler.prototype.destroyShapes = function (...args) {};
+        mxGraphHandler.prototype.mouseMove = function (...args) {};
+
         function fitWindow(graph, cells) {
             var bounds = graph.getGraphBounds();
 
