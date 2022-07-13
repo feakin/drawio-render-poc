@@ -2,7 +2,7 @@
 
 - [ ] from DSL
 - [ ] Render 
-  - [ ] offline usage for render
+  - [x] offline usage for render
   - [ ] convert to svg
     - [ ] https://github.com/jgraph/drawio-tools/blob/master/tools/convert.html
 - [ ] Convert
