@@ -86,12 +86,7 @@
                 graph.setEnabled(false);
 
                 let cells = graph.importGraphModel(node.documentElement);
-
                 fitWindow(graph, cells);
-
-                // export svg
-                let svg = graph.getSvg(null, 1.0);
-                console.log(svg);
             });
     </script>
 </head>
