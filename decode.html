@@ -5,19 +5,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script>
-        var mxEdgeHandler = function () {}
-        var mxVertexHandler = function () {}
-        var mxRubberband = function () {}
-        var mxGuide = function () {}
-        var mxOutline = function () {}
-        var mxDragSource = function () {}
-    </script>
-<!--    <script src="js/viewer.min.js"></script>-->
+<!--    <script>-->
+<!--        var mxEdgeHandler = function () {}-->
+<!--        var mxVertexHandler = function () {}-->
+<!--        var mxRubberband = function () {}-->
+<!--        var mxGuide = function () {}-->
+<!--        var mxOutline = function () {}-->
+<!--        var mxDragSource = function () {}-->
+<!--    </script>-->
+    <script src="js/viewer.min.js"></script>
     <script src="js/embed.js"></script>
     <script src="js/decode.js"></script>
     <script>
-        fetch("samples/sample.drawio")
+        fetch("samples/functional.drawio")
             .then(response => response.text())
             .then(text => {
                 const node = mxUtils.parseXml(decode(text));
