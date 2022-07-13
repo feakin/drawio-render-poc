@@ -27,6 +27,8 @@
         }
         var mxDragSource = function () {
         }
+        var mxEdgeSegmentHandler = function () {
+        }
     </script>
     <script src="js/embed.js"></script>
     <script src="js/decode.js"></script>
@@ -45,13 +47,6 @@
             graph.view.translate.x = - t.x;
             graph.view.translate.y = - t.y;
 
-            var b = Editor.fitWindowBorders;
-            if (b != null) {
-                bounds.x -= b.x;
-                bounds.y -= b.y;
-                bounds.width += b.width + b.x;
-                bounds.height += b.height + b.y;
-            }
 
             bounds = mxRectangle.fromRectangle(bounds);
 
