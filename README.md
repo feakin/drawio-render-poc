@@ -7,6 +7,16 @@
     - [ ] https://github.com/jgraph/drawio-tools/blob/master/tools/convert.html
 - [ ] Convert
   - samples: [https://github.com/Voravomas/drawio_diagram_converter](https://github.com/Voravomas/drawio_diagram_converter)
+- [ ] importer
+  - see in: src/main/webapp/js/diagramly/miro
+
+Samples:
+
+```javascript
+// for background images, it's can be a xml
+var bgImg = node.getAttribute('backgroundImage');
+this.graph.setBackgroundImage(this.graph.parseBackgroundImage(bgImg));
+```
 
 Others:
 
