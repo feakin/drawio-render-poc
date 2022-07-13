@@ -5,6 +5,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #output {
+            overflow: scroll;
+        }
+    </style>
+    <!--  only for viewer not usage  -->
+
 <!--    <script>-->
 <!--        var mxEdgeHandler = function () {}-->
 <!--        var mxVertexHandler = function () {}-->
@@ -17,16 +24,49 @@
     <script src="js/embed.js"></script>
     <script src="js/decode.js"></script>
     <script>
+        function fitWindow(graph) {
+            var bounds = graph.getGraphBounds();
+
+            var t = graph.view.translate;
+            var s = graph.view.scale;
+
+            bounds.x = bounds.x / s - t.x;
+            bounds.y = bounds.y / s - t.y;
+            bounds.width /= s;
+            bounds.height /= s;
+
+            var b = Editor.fitWindowBorders;
+            if (b != null) {
+                bounds.x -= b.x;
+                bounds.y -= b.y;
+                bounds.width += b.width + b.x;
+                bounds.height += b.height + b.y;
+            }
+
+            var cw = graph.container.clientWidth;
+            var ch = graph.container.clientHeight;
+
+            console.log(cw, ch);
+            var scale = Math.floor(20 * Math.min(cw / bounds.width, ch / bounds.height)) / 20;
+            console.log(scale);
+
+            graph.fitWindow(bounds)
+        }
+
         fetch("samples/functional.drawio")
             .then(response => response.text())
             .then(text => {
                 const node = mxUtils.parseXml(decode(text));
                 const graph = new Graph(document.getElementById('output'), null, null, null, null); // create Graph instance, container is an HTML element where the SVG will be exported
                 graph.importGraphModel(node.documentElement);
+                fitWindow(graph);
+
+                // let svg = graph.createSvgImageExport();
+                // console.log(svg);
             });
     </script>
 </head>
-<div id="output"></div>
 <body>
+    <div id="output"></div>
 </body>
 </html>
