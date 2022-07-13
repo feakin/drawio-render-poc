@@ -12,40 +12,15 @@
             height: 100%;
         }
     </style>
-    <!--  only for viewer not usage  -->
-
+    <script src="js/decode.js"></script>
+    <script src="js/embed.js"></script>
     <script>
-        var mxEdgeHandler = function () {
-        }
-        mxEdgeHandler.prototype.destroy = function (...args) {
-        };
-        var mxVertexHandler = function () {
-        }
-        mxVertexHandler.prototype.destroy = function (...args) {
-        };
-        mxVertexHandler.prototype.mouseMove = function (...args) {
-        };
-        var mxRubberband = function () {
-        }
-        var mxGuide = function () {
-        }
-        var mxOutline = function () {
-        }
-        var mxDragSource = function () {
-        }
-        var mxEdgeSegmentHandler = function () {
-        }
-        var mxSelectionCellsHandler = function () {
-        };
         mxSelectionCellsHandler.prototype.refresh = function (...args) {
         };
-    </script>
-    <script src="js/embed.js"></script>
-    <script src="js/decode.js"></script>
-    <script>
-        mxSelectionCellsHandler.prototype.refresh = function (...args) {};
-        mxGraphHandler.prototype.destroyShapes = function (...args) {};
-        mxGraphHandler.prototype.mouseMove = function (...args) {};
+        mxGraphHandler.prototype.destroyShapes = function (...args) {
+        };
+        mxGraphHandler.prototype.mouseMove = function (...args) {
+        };
 
         function fitWindow(graph, cells) {
             var bounds = graph.getGraphBounds();
@@ -68,25 +43,29 @@
             graph.scrollCellToVisible(graph.getSelectionCell());
             graph.moveCells(cells, 0 - bounds.x, 0 - bounds.y)
 
-            graph.fitWindow(bounds, 10, 10)
+            graph.fitWindow(bounds, 0, 0)
+        }
+
+        function renderByText(element, text) {
+            const node = parseXml(decode(text));
+            const graph = new Graph(element); // create Graph instance, container is an HTML element where the SVG will be exported
+
+            graph.resizeContainer = true;
+            graph.centerZoom = true;
+            graph.zoomWheel = true;
+
+            graph.setTooltips(false);
+            graph.setConnectable(false);
+            graph.setEnabled(false);
+
+            let cells = graph.importGraphModel(node.documentElement);
+            fitWindow(graph, cells);
         }
 
         fetch("samples/functional.drawio")
             .then(response => response.text())
             .then(text => {
-                const node = mxUtils.parseXml(decode(text));
-                const graph = new Graph(document.getElementById('output')); // create Graph instance, container is an HTML element where the SVG will be exported
-
-                graph.resizeContainer = true;
-                graph.centerZoom = true;
-                graph.zoomWheel = true;
-
-                graph.setTooltips(false);
-                graph.setConnectable(false);
-                graph.setEnabled(false);
-
-                let cells = graph.importGraphModel(node.documentElement);
-                fitWindow(graph, cells);
+                renderByText(document.getElementById('output'), text);
             });
     </script>
 </head>

@@ -1,3 +1,28 @@
+var mxEdgeHandler = function () {
+}
+mxEdgeHandler.prototype.destroy = function (...args) {
+}
+var mxVertexHandler = function () {
+}
+mxVertexHandler.prototype.destroy = function (...args) {
+}
+mxVertexHandler.prototype.mouseMove = function (...args) {
+}
+var mxRubberband = function () {
+}
+var mxGuide = function () {
+}
+var mxOutline = function () {
+}
+var mxDragSource = function () {
+}
+var mxEdgeSegmentHandler = function () {
+}
+var mxSelectionCellsHandler = function () {
+}
+mxSelectionCellsHandler.prototype.refresh = function (...args) {
+}
+
 function createXmlDocument() {
     var doc = null;
 
