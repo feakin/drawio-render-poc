@@ -9,6 +9,8 @@
   - samples: [https://github.com/Voravomas/drawio_diagram_converter](https://github.com/Voravomas/drawio_diagram_converter)
 - [ ] importer
   - see in: src/main/webapp/js/diagramly/miro
+- [ ] components
+  - web components
 
 Samples:
 

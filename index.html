@@ -74,7 +74,8 @@
 
                 fitWindow(graph, cells);
 
-                let svg = graph.createSvgImageExport();
+                // export svg
+                let svg = graph.getSvg(null, 1.0);
                 console.log(svg);
             });
     </script>
