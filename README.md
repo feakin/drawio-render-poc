@@ -11,6 +11,8 @@
   - see in: src/main/webapp/js/diagramly/miro
 - [ ] components
   - web components
+- [ ] XMind
+  - [ ] https://github.com/leungwensen/xmind-sdk-javascript
 
 Samples:
 
