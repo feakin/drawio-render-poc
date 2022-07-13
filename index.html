@@ -544,7 +544,7 @@
             return graph;
         };
 
-        function fitWindow(graph) {
+        function fitWindow(graph, cells) {
             var bounds = graph.getGraphBounds();
 
             var t = graph.view.translate;
@@ -573,7 +573,14 @@
             var scale = Math.floor(20 * Math.min(cw / bounds.width, ch / bounds.height)) / 20;
             console.log(scale);
 
-            graph.fitWindow(bounds)
+            bounds = mxRectangle.fromRectangle(bounds);
+
+
+            graph.setSelectionCells(cells)
+            graph.scrollCellToVisible(graph.getSelectionCell());
+            graph.moveCells(cells, 0 - bounds.x, 0 - bounds.y)
+
+            graph.fitWindow(bounds, 10, 10)
         }
 
         fetch("samples/functional.drawio")
@@ -583,12 +590,17 @@
 
                 const node = mxUtils.parseXml(decode(text));
                 const graph = new Graph(document.getElementById('output')); // create Graph instance, container is an HTML element where the SVG will be exported
-                graph.importGraphModel(node.documentElement);
+
                 graph.resizeContainer = true;
-                graph.centerZoom = false;
+                graph.centerZoom = true;
+                graph.zoomWheel = true;
 
+                graph.setTooltips(false);
+                graph.setConnectable(false);
 
-                fitWindow(graph);
+                let cells = graph.importGraphModel(node.documentElement);
+
+                fitWindow(graph, cells);
 
                 // let svg = graph.createSvgImageExport();
                 // console.log(svg);
